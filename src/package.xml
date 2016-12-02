@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>BlacklistFilterDelegate</members>
+        <members>BlacklistFilterTestSuite</members>
+        <members>PatternHelper</members>
+        <members>PatternHelperSerializable</members>
+        <members>RegexHelper</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>CBLAbout</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>AddRegexTrigger</members>
+        <members>BlacklistWordFilterOnComments</members>
+        <members>BlacklistWordFilterOnPost</members>
+        <members>BlacklistWordFilterOnUserStatus</members>
+        <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>Chatter_Blacklist</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Blacklist_Audit__c</members>
+        <members>Blacklisted_Word__c</members>
+        <members>TODO__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>ButtonsLogosImages</members>
+        <members>ButtonsLogosImages/Blacklist_Logo2.gif</members>
+        <name>Document</name>
+    </types>
+    <types>
+        <members>Blacklist_Audit__c-Blacklist Audit Layout</members>
+        <members>Blacklisted_Word__c-Blacklisted Word Layout</members>
+        <members>TODO__c-TODO Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>videobox</members>
+        <name>StaticResource</name>
+    </types>
+    <version>36.0</version>
+</Package>
