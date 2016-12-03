@@ -65,7 +65,7 @@ public class BlacklistFilterDelegate
     
      private List<FeedItem> filterBodyForFeedItems(List<FeedItem> sobjs)
     {
-    	
+        
         List<FeedItem> updatedSobjs = new List<FeedItem>();
         
          Matcher m;
@@ -80,36 +80,36 @@ public class BlacklistFilterDelegate
                 
                 for(PatternHelper ph : patterns)
                 {
-                	//System.debug('PH: WORD:'+ph.blacklistedWord.Word__c);
-                	//System.debug('PH PREVENT ON BREACH:'+ph.blacklistedWord.Prevent_Post_on_Breach__c);
-                	//System.debug('PH ADD TO AUDIT:'+ph.blacklistedWord.Add_to_Compliance_Audit__c);
-                	 //System.debug('POST IS:'+body + 'AND DOES IT MATCH WORD:'+ph.blacklistedWord.Word__c+'-->' +myMatcher.matches());
+                    //System.debug('PH: WORD:'+ph.blacklistedWord.Word__c);
+                    //System.debug('PH PREVENT ON BREACH:'+ph.blacklistedWord.Prevent_Post_on_Breach__c);
+                    //System.debug('PH ADD TO AUDIT:'+ph.blacklistedWord.Add_to_Compliance_Audit__c);
+                     //System.debug('POST IS:'+body + 'AND DOES IT MATCH WORD:'+ph.blacklistedWord.Word__c+'-->' +myMatcher.matches());
                      
-                	 Matcher myMatcher = ph.p.matcher(body);
+                     Matcher myMatcher = ph.p.matcher(body);
                       
                        if(myMatcher.find())
                        {
-                       		 body = body.replaceAll(ph.regexValue, ph.substitutionValue);
-                       		 
-	                          if(!matchedPosts.containsKey(ph.blacklistedWord.id))
-	                          {
-	                                      ph.origPostBody = f.Body;
-	                                      //System.debug('ADDING ORIG POST BODY:'+ph.origPostBody);
-	                                      ph.postCreatedById = f.createdById;
-	                          		      matchedPosts.put(ph.blacklistedWord.id, ph);
-	                          }
-	                          
-	                         //only need to set one message per breach - on the first breach
-	                         if(ph.preventPostOnMatch)
-	                         {
-	                         	//System.debug('PH PREVENTING WITH WORD:'+ph.blacklistedWord.Word__c);
-	                         	 if(!String.isEmpty(ph.blacklistedWord.Custom_Expression__c))
-		                              	matchedWord = 'Custom Regular Expression';
-		                          else
-		                              	matchedWord = ph.blacklistedWord.Word__c;   
-		                          preventPost = true; 
-		                          break;
-	                         }
+                             body = body.replaceAll(ph.regexValue, ph.substitutionValue);
+                             
+                              if(!matchedPosts.containsKey(ph.blacklistedWord.id))
+                              {
+                                          ph.origPostBody = f.Body;
+                                          //System.debug('ADDING ORIG POST BODY:'+ph.origPostBody);
+                                          ph.postCreatedById = f.createdById;
+                                          matchedPosts.put(ph.blacklistedWord.id, ph);
+                              }
+                              
+                             //only need to set one message per breach - on the first breach
+                             if(ph.preventPostOnMatch)
+                             {
+                                //System.debug('PH PREVENTING WITH WORD:'+ph.blacklistedWord.Word__c);
+                                 if(!String.isEmpty(ph.blacklistedWord.Custom_Expression__c))
+                                        matchedWord = 'Custom Regular Expression';
+                                  else
+                                        matchedWord = ph.blacklistedWord.Word__c;   
+                                  preventPost = true; 
+                                  break;
+                             }
                        }
                  }
                 
@@ -119,7 +119,7 @@ public class BlacklistFilterDelegate
                     f.addError('xxPost prevented due to use of a blacklisted word: '+matchedWord);
                 else
                 {
-                		f.Body = body;          
+                        f.Body = body;          
                 }
                 updatedSobjs.add(f);
          }
@@ -131,7 +131,7 @@ public class BlacklistFilterDelegate
     
     private List<User> filterBodyForUserStatus(List<User> sobjs)
     {
-    	
+        
         List<User> updatedSobjs = new List<User>();
         
          Matcher m;
@@ -149,23 +149,23 @@ public class BlacklistFilterDelegate
                       
                        if(myMatcher.find())
                        {
-                       		 body = body.replaceAll(ph.regexValue, ph.substitutionValue);
-                       		 
+                             body = body.replaceAll(ph.regexValue, ph.substitutionValue);
+                             
                           if(!matchedPosts.containsKey(ph.blacklistedWord.id))
                           {
                                       ph.origPostBody = f.CurrentStatus;
                                       ph.postCreatedById = f.Id;
-                          		      matchedPosts.put(ph.blacklistedWord.id, ph);
+                                      matchedPosts.put(ph.blacklistedWord.id, ph);
                           }
                           
                          //only need to set one message per breach - on the first breach
                           if(!preventPost)
                           {
-                          	if(ph.preventPostOnMatch)
-                          	{
+                            if(ph.preventPostOnMatch)
+                            {
                               preventPost = true;
                               matchedWord = ph.blacklistedWord.Word__c;
-                          	}
+                            }
                           }
                        }
                  }
@@ -174,7 +174,7 @@ public class BlacklistFilterDelegate
                      f.addError('Post prevented due to use of a blacklisted word: '+matchedWord);
                 else
                 {
-                		f.CurrentStatus = body; 
+                        f.CurrentStatus = body; 
                         updatedSobjs.add(f);
                 }
          }
@@ -186,7 +186,7 @@ public class BlacklistFilterDelegate
     
      private List<FeedComment> filterBodyForFeedComments(List<FeedComment> sobjs)
     {
-    	
+        
         List<FeedComment> updatedSobjs = new List<FeedComment>();
         
          Matcher m;
@@ -204,23 +204,23 @@ public class BlacklistFilterDelegate
                       
                        if(myMatcher.find())
                        {
-                       		 body = body.replaceAll(ph.regexValue, ph.substitutionValue);
-                       		 
+                             body = body.replaceAll(ph.regexValue, ph.substitutionValue);
+                             
                           if(!matchedPosts.containsKey(ph.blacklistedWord.id))
                           {
                                       ph.origPostBody = f.CommentBody;
                                       ph.postCreatedById = f.CreatedById;
-                          		      matchedPosts.put(ph.blacklistedWord.id, ph);
+                                      matchedPosts.put(ph.blacklistedWord.id, ph);
                           }
                           
                          //only need to set one message per breach - on the first breach
                           if(!preventPost)
                           {
-	                          	if(ph.preventPostOnMatch)
-	                          	{
-	                              preventPost = true;
-	                              matchedWord = ph.blacklistedWord.Word__c;
-	                          	}
+                                if(ph.preventPostOnMatch)
+                                {
+                                  preventPost = true;
+                                  matchedWord = ph.blacklistedWord.Word__c;
+                                }
                           }
                        }
                  }
@@ -229,7 +229,7 @@ public class BlacklistFilterDelegate
                      f.addError('Post prevented due to use of a blacklisted word: '+matchedWord);
                 else
                 {
-                		f.CommentBody = body; 
+                        f.CommentBody = body; 
                         updatedSobjs.add(f);
                 }
          }
@@ -243,23 +243,23 @@ public class BlacklistFilterDelegate
     //END TEST
   
   
-  	/**
-  	 * Take the matched posts, serialize them (so we can send them to a future method), and async to insert into audit table
-  	 * This allows us to insert audits even if the feeditem transaction rollsback.
-  	 * 6/13/2013 - Added qwall@salesforce.com
-  	 */
-  	private void doAudit()
-  	{
-  		List<String> serializedPH = new List<String>();
-  	
-  		for(PatternHelper p : matchedPosts.values())
+    /**
+     * Take the matched posts, serialize them (so we can send them to a future method), and async to insert into audit table
+     * This allows us to insert audits even if the feeditem transaction rollsback.
+     * 6/13/2013 - Added qwall@salesforce.com
+     */
+    private void doAudit()
+    {
+        List<String> serializedPH = new List<String>();
+    
+        for(PatternHelper p : matchedPosts.values())
         {
-        	serializedPH.add(JSON.serialize(p.getSerializable()));
+            serializedPH.add(JSON.serialize(p.getSerializable()));
         }
         //System.debug('FIRING FUTURE WITH THIS MANY RECORDS:'+serializedPH.size());
         doAuditFuture(serializedPH);
-  	}
-  	
+    }
+    
     /**
      * If a blacklisted word is flagged as save to audit, lets write it to the blacklist audit list.
      * Accepts a serialized list of pattern helpers.
@@ -275,15 +275,15 @@ public class BlacklistFilterDelegate
        //deserialize and work with pattern helper
        for (String ser : mposts)
        {
-       	//System.debug('JSON:'+ser);
-       	  p = (PatternHelperSerializable) JSON.deserialize(ser, PatternHelperSerializable.class);
+        //System.debug('JSON:'+ser);
+          p = (PatternHelperSerializable) JSON.deserialize(ser, PatternHelperSerializable.class);
            
            //check for audit actions
             if(p.blacklistedWord.Add_to_Compliance_Audit__c)
             {
-            	//System.debug('FOUND AN AUDIT MATCH. ORIG POST:'+p.origPostBody);
+                //System.debug('FOUND AN AUDIT MATCH. ORIG POST:'+p.origPostBody);
                blaudit = new Blacklist_Audit__c();
-               blaudit.Breached_By__c = p.postCreatedById;
+               blaudit.Breached_By__c = UserInfo.getUserId();
                blaudit.Unscrubbed_Post__c = p.origPostBody;
              
                if(p.blacklistedWord.Custom_Expression__c != NULL)
@@ -300,24 +300,24 @@ public class BlacklistFilterDelegate
         
         if(!audits.isEmpty())
         {
-        	//System.debug('GOT SOME AUDITS TO ADD');
+            //System.debug('GOT SOME AUDITS TO ADD');
             Database.SaveResult[] srList = Database.insert(audits);
             
             // Iterate through each returned result
-			for (Database.SaveResult sr : srList) {
-			    if (sr.isSuccess()) {
-			        // Operation was successful, so get the ID of the record that was processed
-			        //System.debug('Successfully inserted account. Account ID: ' + sr.getId());
-			    }
-			    else {
-			        // Operation failed, so get all errors                
-			        for(Database.Error err : sr.getErrors()) {
-			            System.debug('The following error has occurred.');                    
-			            System.debug(err.getStatusCode() + ': ' + err.getMessage());
-			            System.debug('Blacklist fields that affected this error: ' + err.getFields());
-			        }
-			    }
-			}
+            for (Database.SaveResult sr : srList) {
+                if (sr.isSuccess()) {
+                    // Operation was successful, so get the ID of the record that was processed
+                    //System.debug('Successfully inserted account. Account ID: ' + sr.getId());
+                }
+                else {
+                    // Operation failed, so get all errors                
+                    for(Database.Error err : sr.getErrors()) {
+                        System.debug('The following error has occurred.');                    
+                        System.debug(err.getStatusCode() + ': ' + err.getMessage());
+                        System.debug('Blacklist fields that affected this error: ' + err.getFields());
+                    }
+                }
+            }
              
         }     
     }

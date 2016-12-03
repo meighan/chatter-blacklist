@@ -30,6 +30,13 @@
         <name>CustomObject</name>
     </types>
     <types>
+        <members>AboutBlacklist</members>
+        <members>Blacklist_Audit__c</members>
+        <members>Blacklisted_Word__c</members>
+        <members>TODO__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
         <members>ButtonsLogosImages</members>
         <members>ButtonsLogosImages/Blacklist_Logo2.gif</members>
         <name>Document</name>

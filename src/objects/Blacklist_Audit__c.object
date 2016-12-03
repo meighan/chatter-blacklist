@@ -99,6 +99,10 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Blacklist Audits</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <customTabListAdditionalFields>Breached_By__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Blacklisted_Word__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
